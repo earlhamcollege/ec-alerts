@@ -1,0 +1,37 @@
+{% if data.global.alertDisplay %}
+    <div class="alert alert-warning info-alert info-{{data.global.alertLevel }}" role="alert">
+    
+    {% if data.global.alertLevel == 1 %}
+      <i class="fa fa-exclamation-triangle fa-x3"></i>
+    {% elseif data.global.alertLevel == 2 %}
+      <i class="fa fa-cloud fa-x3"></i>
+    {% else %}
+      <i class="fa fa-info fa-x3"></i>
+    {% endif %}
+
+
+     
+
+    <strong>{{ data.global.alertTitle}}</strong>
+    
+    <button type="button" class="close" data-toggle="collapse" aria-expanded="false" href="#collapseExample"  aria-label="Close" aria-controls="collapseExample">
+      <span aria-hidden="true">^</span>
+    </button>
+    <div class="collapse" id="collapseExample">
+      {% for item in data.global._alerts %}
+          <div class="card card-body">
+            {{item.upcoming}}
+             
+              <div class="usa-media_block-body">
+                <p>
+                  <strong>{{item.alertTitle}}</strong>
+                  <br>
+                  {{ item.alertcontent }}
+                </p>
+              </div>
+          </div>
+          {% endfor %}
+    </div>
+  </div>
+
+  {% endif %}
