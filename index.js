@@ -8,5 +8,6 @@ module.exports = {
 
   construct: function(self, options) {
     self.play = function($widget, data, options) {};
+    self.pushAsset('stylesheet', 'alert', 'always');
   }
 };
