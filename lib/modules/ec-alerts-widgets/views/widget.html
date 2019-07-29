@@ -1,3 +1,6 @@
+{{data.global.ecAlerts.options.currentPage}}
+
+
 {% if data.global.alertDisplay %}
     <div class="alert alert-warning info-alert info-{{data.global.alertLevel }}" role="alert">
     
@@ -11,12 +14,18 @@
 
 
      
-
-    <strong>{{ data.global.alertTitle}}</strong>
+     {% if data.global.alertTitle | length %}
+     	<strong>{{data.global.alertTitle}}</strong>
+     {% else %}
+     	<strong>{{ data.global._alert[0].title}}</strong>
+     {% endif %}
     
+    
+    {% if data.global._alert | length %}
     <button type="button" class="close" data-toggle="collapse" aria-expanded="false" href="#collapseExample"  aria-label="Close" aria-controls="collapseExample">
       <span aria-hidden="true">^</span>
     </button>
+
     <div class="collapse" id="collapseExample">
       {% for item in data.global._alerts %}
           <div class="card card-body">
@@ -32,6 +41,8 @@
           </div>
           {% endfor %}
     </div>
+    {% endif %}
   </div>
 
   {% endif %}
+
