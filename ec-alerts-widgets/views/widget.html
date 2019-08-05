@@ -1,8 +1,13 @@
-{{data.global.ecAlerts.options.currentPage}}
 
-
+{% set selectedAlertLevel = data.global.alertDefaults[data.global.alertLevel -1] %}
+<style>
+.info-level{{data.global.alertLevel}} {
+	background-color:  {{selectedAlertLevel.alertBgColor or '#6DC6E8'}};
+  color: {{selectedAlertLevel.alertFontColor}};
+}
+</style>
 {% if data.global.alertDisplay %}
-    <div class="alert alert-warning info-alert info-{{data.global.alertLevel }}" role="alert">
+    <div class="alert info-alert info-level{{data.global.alertLevel | json }}" role="alert" data-bgcolor="{{selectedAlertLevel.alertBgColor}}">
     
     {% if data.global.alertLevel == 1 %}
       <i class="fa fa-exclamation-triangle fa-x3"></i>
@@ -13,15 +18,16 @@
     {% endif %}
 
 
-     
-     {% if data.global.alertTitle | length %}
+    
+     	
+     {% if data.global.alertTitle | length > 1 %}
      	<strong>{{data.global.alertTitle}}</strong>
-     {% else %}
-     	<strong>{{ data.global._alert[0].title}}</strong>
+     {% else%}
+     	<strong>{{ data.global._alerts[0].title}}</strong> - {{ data.global._alerts[0].alertContent}}
      {% endif %}
     
     
-    {% if data.global._alert | length %}
+    {% if data.global._alerts | length %}
     <button type="button" class="close" data-toggle="collapse" aria-expanded="false" href="#collapseExample"  aria-label="Close" aria-controls="collapseExample">
       <span aria-hidden="true">^</span>
     </button>

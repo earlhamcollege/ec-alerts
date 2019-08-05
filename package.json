@@ -1,6 +1,6 @@
 {
   "name": "ec-alerts",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Sitewide Page Alerts",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,9 @@
   "dependencies": {
     "@sailshq/lodash": "^3.10.3",
     "async": "^3.1.0",
-    "moment": "^2.24.0"
+    "bluebird": "^3.5.5",
+    "moment": "^2.24.0",
+    "promise": "^8.0.3"
   },
   "directories": {
     "lib": "lib"
