@@ -1,6 +1,6 @@
 {
   "name": "ec-alerts",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Sitewide Page Alerts",
   "main": "index.js",
   "scripts": {
