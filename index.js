@@ -3,7 +3,7 @@ module.exports = {
   alias: 'ec-alerts',
   moogBundle: {
     modules: ['ec-alerts-global', 'ec-alerts', 'ec-alerts-widgets'],
-    directory: './'
+    directory: './lib/'
   },
 
   construct: function(self, options) {
