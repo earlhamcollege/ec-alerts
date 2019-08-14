@@ -1,8 +1,8 @@
 module.exports = {
-  name: 'ec-alerts',
-  alias: 'ec-alerts',
+  name: 'ec-alerts-module',
+  alias: 'ec-alerts-module',
   moogBundle: {
-    modules: ['ec-alerts-global', 'ec-alerts-piece', 'ec-alerts-widgets'],
+    modules: ['ec-alerts-global', 'alerts', 'ec-alerts-widgets'],
     directory: 'lib/modules'
   },
   construct: function(self, options) {
