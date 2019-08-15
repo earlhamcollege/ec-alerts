@@ -6,78 +6,78 @@ module.exports = {
     directory: 'lib/modules'
   },
   beforeConstruct: function(self, options) {
-		options.sort = { startDate: 1, startTime: 1 };
-		options.addFields = [
-			{
-				name: 'startDate',
-				label: 'Date',
-				type: 'date',
-				required: true
-			},
-			{
-	        	name: 'allDay',
-	        	label: 'Is this an all day event?',
-	        	type: 'boolean',
-	        	choices: [
-	          		{ label: 'Yes', value: true },
-	          		{ label: 'No', value: false , showFields: ['startTime', 'endTime'] }
-	        	],
-	        	def: false
-	      	},
-	      	{
-				name: 'startTime',
-		        label: 'Start Time',
-		        type: 'time',
-		        def: '09:00:00',
-		        required: true
-			},
-			{
-		        name: 'endTime',
-		        label: 'End Time',
-		        type: 'time',
-		        def: '17:30:00',
-		        required: true
-			},
-			{
-        		name: 'endDate',
-        		label: 'End Date',
-        		type: 'date'
-      		},
-			{
-		        name: 'dateType',
-		        label: 'What type of event is this?',
-		        type: 'select',
-		        choices: [
-		          { label: 'Single Day', value: 'single' },
-		          { label: 'Consecutive Days', value: 'consecutive', showFields: ['endDate'] }
-		        ],
-		        def: 'single'
-		    },
-	        {
-	            type: 'string',
-	            name: 'alertIcon',
-	            label: 'Alert Icon'
-	        },
-	        {
-	            type: 'string',
-	            name: 'alertContent',
-	            label: 'Content',
-	            textarea: true
-	        }
-   		].concat(options.addFields || []);
+    options.sort = { startDate: 1, startTime: 1 };
+    options.addFields = [
+      {
+        name: 'startDate',
+        label: 'Date',
+        type: 'date',
+        required: true
+      },
+      {
+            name: 'allDay',
+            label: 'Is this an all day event?',
+            type: 'boolean',
+            choices: [
+                { label: 'Yes', value: true },
+                { label: 'No', value: false , showFields: ['startTime', 'endTime'] }
+            ],
+            def: false
+          },
+          {
+        name: 'startTime',
+            label: 'Start Time',
+            type: 'time',
+            def: '09:00:00',
+            required: true
+      },
+      {
+            name: 'endTime',
+            label: 'End Time',
+            type: 'time',
+            def: '17:30:00',
+            required: true
+      },
+      {
+            name: 'endDate',
+            label: 'End Date',
+            type: 'date'
+          },
+      {
+            name: 'dateType',
+            label: 'What type of event is this?',
+            type: 'select',
+            choices: [
+              { label: 'Single Day', value: 'single' },
+              { label: 'Consecutive Days', value: 'consecutive', showFields: ['endDate'] }
+            ],
+            def: 'single'
+        },
+          {
+              type: 'string',
+              name: 'alertIcon',
+              label: 'Alert Icon'
+          },
+          {
+              type: 'string',
+              name: 'alertContent',
+              label: 'Content',
+              textarea: true
+          }
+      ].concat(options.addFields || []);
 
-   		options.arrangeFields = options.arrangeFields || [
-	      { name: 'basic', label: 'Basics', fields: ['title','alertIcon','alertContent','startDate', 'allDay', 'startTime', 'endTime', 'locations', 'dateType', 'endDate', 'repeatInterval', 'repeatCount'] },
-	      { name: 'meta', label: 'Meta', fields: ['slug','tags','published'] }
-	    ].concat(options.arrangeFields || []);
-   	},
+      options.arrangeFields = options.arrangeFields || [
+        { name: 'basic', label: 'Basics', fields: ['title','alertIcon','alertContent','startDate', 'allDay', 'startTime', 'endTime', 'locations', 'dateType', 'endDate', 'repeatInterval', 'repeatCount'] },
+        { name: 'meta', label: 'Meta', fields: ['slug','tags','published'] }
+      ].concat(options.arrangeFields || []);
+    },
   construct: function(self, options) {
     var superWidgetCursor = self.widgetCursor;
     
     self.widgetCursor = function(req, criteria) {
       return superWidgetCursor(req, criteria).upcoming(true);
     };
-	   	  // limit the results of autocomplete for joins
+        // limit the results of autocomplete for joins
     // so they only include upcoming events
     self.extendAutocompleteCursor = function(cursor) {
       return cursor.upcoming(true);
