@@ -2,7 +2,7 @@ module.exports = {
   name: 'ec-alerts',
   extend: 'apostrophe-pieces',
   moogBundle: {
-    modules: ['ec-alerts-global', 'alerts', 'ec-alerts-widgets'],
+    modules: ['ec-alerts-global','ec-alerts-widgets'],
     directory: 'lib/modules'
   },
   beforeConstruct: function(self, options) {
