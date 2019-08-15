@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'ec-alerts',
+  name: 'Site Alert',
   extend: 'apostrophe-pieces',
   moogBundle: {
     modules: ['ec-alerts-global','ec-alerts-widgets'],
